@@ -1,0 +1,297 @@
+﻿@model ProiectASP.Models.Group
+
+<div class = "card">
+
+        <div class = "card-body">
+
+            
+                <h3 class="card-title alert-secondary px-3 py-3 rounded-3"> &#128165; @Model.GroupName </h3>
+
+                <br />
+                <p class="card-text"> <b>Subiectul Grupului </b> - @Model.Subject</p>
+                <br />
+
+                <div class="d-flex flex-row justify-content-between mt-4">
+
+                    <div> &#128100; @Model.User.UserName </div>
+
+                    @if (ViewBag.AfisareButoane == true && Model.UserId == ViewBag.UserCurent || ViewBag.EsteAdmin)
+                    {
+
+                            <div class="d-flex flex-row">
+
+                                <a class="btn btn-outline-danger" href="/Groups/Edit/@Model.Id"> &#9999; </a> &nbsp;
+
+                                <form method="post" action="/Groups/Delete/@Model.Id">
+
+                                    <button class="btn btn-outline-danger" type="submit"> &#10060; </button>
+                                </form>
+
+                        </div>
+
+                    }
+            
+                </div>
+
+                <br />
+                <hr />
+                <br />
+
+                <p><b>Membrii grupului </b> </p>
+                <br />
+
+                @if (Model.ProfileGroups.Count > 0)
+                     
+                        @foreach (var profileGroup in Model.ProfileGroups)
+                        {
+                            
+                             <li> @profileGroup.Profile.First_Name @profileGroup.Profile.Last_Name </li>
+                             <br />
+
+                        }
+                <br />
+                <hr />
+                <br />
+
+
+
+
+
+
+
+        @if (ViewBag.EsteAdmin)
+        {
+            <p><b>Chat-ul grupului</b></p>
+
+            @foreach (var chat in Model.Chats)
+            {
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+
+                        <div class="col-md-8">
+
+                            <div>
+
+                                <p class="card-title alert-secondary px-3 py-3 rounded-3"><i> @chat.Text </i></p>
+
+
+
+                            </div>
+
+
+
+                            <div class="d-flex flex-row justify-content-between mt-4">
+
+                                <div> &#128100; @chat.User.UserName </div>
+
+                                @if (chat.UserId == ViewBag.UserCurent || ViewBag.EsteAdmin)
+                                {
+                                    <div class="d-flex flex-row">
+
+                                        <form method="post" action="/Chats/Delete/@chat.Id">
+
+                                            <button class="btn btn-outline-danger" type="submit"> &#10060; </button>
+
+                                        </form>
+
+                                    </div>
+                                }
+                                else
+                                {
+                                    <br />
+                                    <br />
+                                }
+
+                            </div>
+
+                            <br />
+                            <hr>
+                            <br />
+
+                        </div>
+
+                        <div class="col-md-2"></div>
+
+                    </div>
+
+                </div>
+            }
+
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-md-2"></div>
+
+                    <div class="col-md-8">
+
+                        <div class="card">
+
+                            <form method="post" action="/Groups/Show/@Model.Id">
+
+                                <div class="card-body">
+
+                                    <input type="hidden" name="GroupId" value="@Model.Id" />
+
+                                    <label>Continut chat</label>
+                                    <br />
+
+                                    <textarea class="form-control" name="Text"></textarea>
+                                    @Html.ValidationMessage("Text", null, new { @class = "text-danger"})
+
+                                    <br />
+
+                                    <button class="btn btn-danger " type="submit">Adauga chat-ul</button>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-2"></div>
+
+                </div>
+
+            </div>
+        }
+        else
+        {
+            @foreach (var profil in Model.ProfileGroups)
+            @if (profil.Profile.UserId == ViewBag.UserCurent)
+            {
+                    <p><b>Chat-ul grupului</b></p>
+
+                    @foreach (var chat in Model.Chats)
+                    {
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-2"></div>
+
+                                <div class="col-md-8">
+
+                                    <div>
+
+                                        <p class="card-title alert-secondary px-3 py-3 rounded-3"><i> @chat.Text </i></p>
+
+
+
+                                    </div>
+
+
+
+                                    <div class="d-flex flex-row justify-content-between mt-4">
+
+                                        <div> &#128100; @chat.User.UserName </div>
+
+                                        @if (chat.UserId == ViewBag.UserCurent || ViewBag.EsteAdmin)
+                                        {
+                                            <div class="d-flex flex-row">
+
+                                                <form method="post" action="/Chats/Delete/@chat.Id">
+
+                                                    <button class="btn btn-outline-danger" type="submit"> &#10060; </button>
+
+                                                </form>
+
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <br />
+                                            <br />
+                                        }
+
+                                    </div>
+                                                     
+
+                                    <br />
+                                    <hr>
+                                    <br />
+
+                                </div>
+
+                                <div class="col-md-2"></div>
+
+                            </div>
+
+                        </div>
+                    }
+
+
+                <div class="container">
+
+                    <div class="row">
+
+                    <div class="col-md-2"></div>
+
+                        <div class="col-md-8">
+
+                           <div class="card">
+
+                                <form method="post" action="/Groups/Show/@Model.Id">
+
+                                    <div class="card-body">
+
+                                                <input type="hidden" name="GroupId" value="@Model.Id" />
+
+                                        <label>Continut chat</label>
+                                        <br />
+
+                                        <textarea class="form-control" name="Text"></textarea>
+                                                @Html.ValidationMessage("Text", null, new { @class = "text-danger"})
+
+                                        <br />
+
+                                        <button class="btn btn-danger " type="submit">Adauga chat-ul</button>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-2"></div>
+
+                    </div>
+
+                </div>
+            }
+        }
+
+        </div>
+
+</div>
+
+<br /> 
+
+
+
+<br>
+<br>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

@@ -1,0 +1,50 @@
+﻿@model ProiectASP.Models.Post
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Posts",
+     method: FormMethod.Post,
+     routeValues: new { id = Model.Id }))
+{
+    @Html.Label("PostName", "Titlu Postare")
+    <br />
+                
+    @Html.EditorFor(m => m.PostName, new { htmlAttributes = new { @class = "form-control" } })
+
+                
+    @Html.ValidationMessageFor(m => m.PostName, null, new { @class = "text-danger" })                
+    <br /><br />
+
+                
+    @Html.Label("Content", "Continut Postare")                
+    <br />
+                
+    @Html.Editor("Content", new { htmlAttributes = new { @class = "form-control" } })
+
+                
+    @Html.ValidationMessageFor(m => m.Content, null, new { @class = "text-danger" })
+    <br /><br />
+
+    <button class = "btn btn-outline-danger" type = "submit">Modifica postare</button>
+
+}
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

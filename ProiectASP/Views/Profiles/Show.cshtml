@@ -1,0 +1,316 @@
+﻿@model ProiectASP.Models.Profile
+
+@if (ViewBag.Message != null)
+{
+    <br />
+    <br />
+    <h2 class="alert-success p-3 rounded-3 text-center mb-5">@ViewBag.Message</h2>
+}
+
+@if (Model.UserId == ViewBag.UserCurent || ViewBag.EsteAdmin)
+{
+
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-lg-110 mb-4 mb-lg-0">
+                <div class="card mb-3" style="border-radius: .5rem;">
+                    <div class="row g-6">
+                        <div class="col-md-4 gradient-custom text-center text-white"
+                                         style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                            <img src="@Model.Image"
+                                             alt="Avatar" class="img-fluid my-5" style="width: 200px;" />
+                            <h5>@Model.First_Name</h5>
+                            <h5>@Model.Last_Name</h5>
+
+                            <br>
+
+                            <div class="d-flex justify-content-center">
+
+                                <a class="btn btn-outline-danger" href="/Profiles/Edit/@Model.Id"> &#9999; </a> &nbsp;
+
+                                <a>
+                                    <form method="post" action="/Profiles/Delete/@Model.Id">
+
+                                        <button class="btn btn-outline-danger" type="submit"> &#10060; </button>
+                                    </form>
+                                </a>
+
+
+
+                            </div>
+
+
+                            <br> 
+                            <br>
+
+                            <i class="far fa-edit mb-5"></i>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body p-4">
+                                <br>
+                                <br>
+                                <br>
+                                <h6>Informatii</h6>
+                                <hr class="mt-0 mb-4">
+                                <div class="row pt-1">
+                                    <div class="col-6 mb-3">
+                                        <h6>Job</h6>
+                                        <p class="text-muted">@Model.Job</p>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <h6>Numar de telefon</h6>
+                                        <p class="text-muted">@Model.Phone</p>
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+
+                                <div class="row pt-1">
+                                    <hr class="mt-0 mb-4">
+                                    <div class="col-6 mb-3">
+                                        <h6>Descriere</h6>
+                                        <p class="text-muted">@Model.Description</p>
+
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <h6>Status Profil</h6>
+                                        <p class="text-muted">@Model.Profile_Status</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <form method="POST" asp-controller="Profiles" asp-action="AddGroup">
+        <input type="hidden" name="ProfileId" value="@Model.Id" />
+        <div class="d-flex flex-row justify-content-center p-3 border-1 border-top">
+            <div>
+                <select name="GroupId" class="form-control">
+                    <option selected>Adauga acest profil intr-un grup</option>
+                    @foreach (var group in ViewBag.Groups)
+                    {
+                        <option value="@group.Id">@group.GroupName</option>
+                    }
+                </select>
+            </div>
+
+            <div>
+                <input type="submit" class="btn btn-danger" value="+" />
+            </div>
+        </div>
+    </form>
+
+    /// form pentru prieteni
+
+    ///
+
+    <form method="POST" asp-controller="Profiles" asp-action="AddFriend">
+        <input type="hidden" name="ProfileId" value="@Model.Id" />
+        <div class="d-flex flex-row justify-content-center p-3 border-1 border-top">
+            <div>
+                <select name="FriendId" class="form-control">
+                    <option selected>Adauga prieteni </option>
+                    @foreach (var friend in ViewBag.Friends)
+                    {
+                        <option value="@friend.Id"> "@friend.Id  </option>
+                    }
+                </select>
+            </div>
+
+            <div>
+                <input type="submit" class="btn btn-danger" value="+" />
+            </div>
+        </div>
+    </form>
+
+
+
+    @*{
+    @foreach (var friend in Model.Friends)
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2"></div>
+
+                <div class="col-md-8">
+
+                    <div>
+
+                        <p class="card-title alert-secondary px-3 py-3 rounded-3"><i> @friend.Profile.First_Name @friend.Profile.Last_Name</i></p>
+
+                    </div>
+
+
+                </div>
+
+                <div class="col-md-2"></div>
+
+            </div>
+
+        </div>
+    }
+    *@
+
+
+}
+else 
+{
+    @if (Model.Profile_Status == Status.Public)
+    {
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-lg-110 mb-4 mb-lg-0">
+                    <div class="card mb-3" style="border-radius: .5rem;">
+                        <div class="row g-6">
+                            <div class="col-md-4 gradient-custom text-center text-white"
+                                         style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                                <img src="@Model.Image"
+                                             alt="Avatar" class="img-fluid my-5" style="width: 200px;" />
+                                <h5>@Model.First_Name</h5>
+                                <h5>@Model.Last_Name</h5>
+
+                                <br>
+
+                                <i class="far fa-edit mb-5"></i>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body p-4">
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <h6>Informatii</h6>
+                                    <hr class="mt-0 mb-4">
+                                    <div class="row pt-1">
+                                        <div class="col-6 mb-3">
+                                            <h6>Job</h6>
+                                            <p class="text-muted">@Model.Job</p>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <h6>Numar de telefon</h6>
+                                            <p class="text-muted">@Model.Phone</p>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+
+                                    <div class="row pt-1">
+                                        <hr class="mt-0 mb-4">
+                                        <div class="col-6 mb-3">
+                                            <h6>Descriere</h6>
+                                            <p class="text-muted">@Model.Description</p>
+
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <h6>Status Profil</h6>
+                                            <p class="text-muted">@Model.Profile_Status</p>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-lg-110 mb-4 mb-lg-0">
+                    <div class="card mb-3" style="border-radius: .5rem;">
+                        <div class="row g-6">
+                            <div class="col-md-4 gradient-custom text-center text-white"
+                         style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                                <img src="@Model.Image"
+                             alt="Avatar" class="img-fluid my-5" style="width: 200px;" />
+                                <h5>@Model.First_Name</h5>
+                                <h5>@Model.Last_Name</h5>
+
+                                <br>
+
+                                <i class="far fa-edit mb-5"></i>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body p-4">
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <div class="col-6 mb-3">
+                                        <h6>Status Profil</h6>
+                                        <p class="text-muted">@Model.Profile_Status</p>
+                                    </div>
+                                    
+                                    <div class="row pt-1">
+                                        <div class="col-6 mb-3">
+                                            
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+
+                                    <div class="row pt-1">
+                                        
+                                        <div class="col-6 mb-3">
+                                            
+
+                                        </div>
+                                        
+                                    </div>
+
+
+
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+<br>
+<br>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+
+<div class = "d-flex flex-row justify-content-between mb-4 mt-4">
+
+       <h2> Afisare Postari </h2>
+       
+</div>
+
+<br />
+
+@if (ViewBag.Message != null)
+{
+    <h2 class="alert-success p-3 rounded-3 text-center mb-5">@ViewBag.Message</h2>
+}
+
+@* Motorul de cautare *@
+<form method="GET">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Cautati postari dupa nume sau continut" name="search"
+               value="@ViewBag.SearchString">
+        <button class="btn btn-outline-danger" type="submit">Search</button>
+    </div>
+</form>
+
+<br />
+
+
+@foreach (ProiectASP.Models.Post post in ViewBag.Posts)
+{
+    <div class = "card">
+        
+        <div class = "card-body">
+
+            @Html.Partial("PostInfo", post)
+
+            <div class = "d-flex flex-row justify-content-between mt-4">
+
+                <span> @post.Data </span>
+
+                <a class="btn btn-outline-danger" href="/Posts/Show/@post.Id"> Afisare postare </a>
+
+            </div>
+        
+        </div>
+
+    </div>
+
+    <br>
+    <br>
+}
+
+
+<div>
+    <nav aria-label="Page navigation example">
+        <div class="pagination d-flex justify-content-center">
+            
+           
+                <li class="page-item">
+                    <a class="page-link" href="@ViewBag.PaginationBaseUrl=1" aria-label="Previous">
+                        <span aria-hidden="true" class="text-danger">&laquo;</span>
+                    </a>
+                </li>
+
+                @for (int i = 1; i <= ViewBag.lastPage; i++)
+                {
+                    <li class="page-item"> <a class="page-link text-danger" href="@ViewBag.PaginationBaseUrl=@i">@(i)</a> </li>
+                }
+
+                <li class="page-item">
+                    <a class="page-link" href="@ViewBag.PaginationBaseUrl=@(ViewBag.lastPage)" aria-label="Next">
+                        <span aria-hidden="true" class="text-danger">&raquo;</span>
+                    </a>
+                </li>
+            
+        </div>
+    </nav>
+</div>
+
+

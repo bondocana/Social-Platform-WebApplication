@@ -1,0 +1,51 @@
+﻿@model ProiectASP.Models.Group
+
+
+<h2> Grup nou </h2>
+<br />
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Groups",
+   method: FormMethod.Post))
+{
+
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    @Html.Label("GroupName", "Titlu Grup")
+    <br />
+    @Html.TextBox("GroupName", null, new { @class = "form-control" })
+
+    @Html.ValidationMessageFor(m => m.GroupName, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.Label("Subject", "Subiect de discutie")
+    <br />
+    @Html.TextArea("Subject", null, new { @class = "form-control" })
+
+    @Html.ValidationMessage("Subject", null, new { @class = "text-danger" })
+    <br />
+    <br />
+
+    <button class="btn btn-outline-danger" type="submit">Adauga grup</button>
+
+}
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

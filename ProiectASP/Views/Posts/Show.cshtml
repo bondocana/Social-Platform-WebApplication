@@ -1,0 +1,166 @@
+﻿@model ProiectASP.Models.Post
+
+<div class = "card">
+        
+        <div class = "card-body">
+
+            @Html.Partial("PostInfo", Model)
+
+        <div class="d-flex flex-row justify-content-between mt-4">
+
+            <span> @Model.Data </span>
+
+            @if (ViewBag.AfisareButoane == true && Model.UserId == ViewBag.UserCurent || ViewBag.EsteAdmin)
+            {
+
+                <div class="d-flex flex-row">
+
+                <a class="btn btn-outline-danger" href="/Posts/Edit/@Model.Id"> &#9999; </a> &nbsp;
+
+                <form method="post" action="/Posts/Delete/@Model.Id">
+
+                        <button class="btn btn-outline-danger" type="submit"> &#10060; </button>
+                </form>
+
+                </div>
+
+            }
+
+            </div>
+         
+        </div>
+   
+</div>
+
+
+<br>
+<br>
+
+
+@foreach (var comm in Model.Comments)
+{
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2"></div>
+
+                <div class="col-md-8">
+
+                    <div>
+
+                        <p class="card-title alert-secondary px-3 py-3 rounded-3"><i> @comm.Text </i></p>
+                       
+                        
+
+                    </div>
+
+                    
+
+                <div class="d-flex flex-row justify-content-between mt-4">
+             
+                        <small>@comm.Data</small>
+                        
+                    
+
+                    @if (comm.UserId == ViewBag.UserCurent || ViewBag.EsteAdmin)
+                    {
+                        <div class="d-flex flex-row">
+
+                            <a class = "btn btn-outline-danger" href = "/Comments/Edit/@comm.CommentId"> &#9999; </a> &nbsp;
+
+                            <form method = "post" action = "/Comments/Delete/@comm.CommentId">
+
+                                <button class = "btn btn-outline-danger" type = "submit"> &#10060; </button>
+
+                            </form>
+
+                        </div>
+                    }
+                    else
+                    {
+                        <br />
+                        <br />
+                    }
+
+                    </div>
+
+                    <div> &#128100; @comm.User.UserName </div>
+
+                    <br />
+                    <hr> 
+                    <br />
+
+                </div>
+
+                <div class="col-md-2"></div>
+
+            </div>
+
+        </div>
+}
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-2"></div>
+
+        <div class="col-md-8">
+
+            <div class="card">
+
+                <form method="post" action="/Posts/Show/@Model.Id">
+
+                    <div class="card-body">
+
+                        <input type="hidden" name="PostId" value="@Model.Id" />
+
+                        <label>Continut comentariu</label>
+                        <br />
+
+                        <textarea class="form-control" name="Text"></textarea>
+                        @Html.ValidationMessage("Text", null, new { @class = "text-danger"})
+                        
+                        <br />
+
+                        <button class="btn btn-danger " type="submit">Adauga comentariul</button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-2"></div>
+
+    </div>
+
+</div>
+
+<br /> 
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+

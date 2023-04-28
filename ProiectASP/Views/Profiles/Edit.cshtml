@@ -1,0 +1,91 @@
+﻿@model ProiectASP.Models.Profile
+
+
+<h2> Editare Profil </h2>
+<br />
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Profiles",
+  method: FormMethod.Post))
+{
+
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Last_Name", "Nume ")
+    <br />
+    @Html.TextBox("Last_Name", null, new { @class = "form-control" })
+
+    @Html.ValidationMessageFor(m => m.Last_Name, "", new { @class = "text-danger" })
+    <br/>
+
+    @Html.Label("First_Name", "Prenume")
+    <br />
+    @Html.TextBox("First_Name", null, new { @class = "form-control" })
+
+
+    @Html.ValidationMessageFor(m => m.First_Name, "", new { @class = "text-danger" })
+    <br />
+    
+
+
+    @Html.Label("Description", "Descriere profil")
+    <br />
+    @Html.TextArea("Description", null, new { @class = "form-control" })
+
+    @Html.ValidationMessage("Description", null, new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Image", "Fotografie de profil")
+    <br />
+    @Html.TextBox("Image", null, new { @class = "form-control" })
+
+    @Html.ValidationMessage("Image", null, new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Job", "Job")
+    <br />
+    @Html.TextBox("Job", null, new { @class = "form-control" })
+
+    @Html.ValidationMessage("Job", null, new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Phone", "Telefon")
+    <br />
+    @Html.TextBox("Phone", null, new { @class = "form-control" })
+
+    @Html.ValidationMessage("Phone", null, new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Profile_Status", "Statusul Profilului")
+
+    @Html.DropDownListFor(m => m.Profile_Status, new SelectList(Enum.GetValues(typeof(Status))), "Selectati statusul", new { @class = "form-control" })
+    
+    @Html.ValidationMessage("Profile_Status", null, new { @class = "text-danger" })
+    <br />
+    
+    <br />
+
+    <button class="btn btn-outline-danger" type="submit"> Updateaza Profil </button>
+
+}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

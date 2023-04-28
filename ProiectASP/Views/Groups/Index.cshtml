@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div class = "d-flex flex-row justify-content-between mb-4 mt-4">
+
+       <h2> Afisare Grupuri </h2>
+
+        <a class="btn btn-outline-danger" href="/Groups/New"> Grup Nou </a>
+
+</div>
+
+@if (ViewBag.Message != null)
+{
+        <h2 class="alert-success p-3 rounded-3 text-center mb-5">@ViewBag.Message</h2>
+}
+
+@foreach (ProiectASP.Models.Group group in ViewBag.Groups)
+{
+        <div class = "card">
+
+        <h3 class="card-title alert-secondary px-3 py-3 rounded-3">  @group.GroupName </h3>
+
+            <div class = "card-body">
+
+                <div class = "d-flex flex-row justify-content-between mt-4">
+
+
+                    <div >
+
+                        <div>  <b> Subiect grup - </b> @group.Subject </div>
+
+                    </div>
+
+                    <a class="btn btn-outline-danger" href="/Groups/Show/@group.Id"> Afisare grup </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <br>
+        <br>
+}
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

@@ -1,0 +1,63 @@
+﻿@model ProiectASP.Models.Post
+
+
+<h2> Postare noua </h2>
+<br />
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Posts",
+    method: FormMethod.Post))
+{
+
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    @Html.Label("PostName", "Titlu Postare")
+    <br />
+    @Html.TextBox("PostName", null, new { @class = "form-control" })
+
+    @Html.ValidationMessageFor(m => m.PostName, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    
+    
+    @Html.Label("Content", "Continut Postare")
+    <br />
+    @Html.TextArea("Content", null, new { @class = "form-control" })
+
+    @Html.ValidationMessage("Content", null, new { @class = "text-danger" })
+    <br /><br />
+
+    <input type="hidden" name="Data" value="@DateTime.Now" />
+    <br />
+
+
+    <button class = "btn btn-outline-danger" type = "submit">Adauga postare</button>
+
+}
+
+<br /> 
+<br /> 
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

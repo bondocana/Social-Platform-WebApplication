@@ -1,0 +1,44 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    
+    background-image: url('https://million-wallpapers.com/wallpapers/5/27/375323141799862/stylized-constellations-and-a-black-moon.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.navbar {
+    background-color: #dc3545 !important;
+    border: none !important;
+    box-shadow: 0 3px 12px #636e72 !important;
+}
+
+a.nav-link {
+    color: #2c2c2c !important;
+}
+
+    a.nav-link:hover {
+        color: #dc3545 !important;
+    }
+
+.logoutbtn {
+    color: #2c2c2c !important;
+}
+
+    .logoutbtn:hover {
+        color: #dc3545 !important;
+    }
